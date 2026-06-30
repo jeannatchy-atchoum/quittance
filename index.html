@@ -396,11 +396,31 @@ function generatePDF() {
 
   // Bandeau vert header
   doc.setFillColor(46,125,50); doc.rect(0,0,210,28,"F");
+
+  // Logo maison+clé (blanc sur fond vert)
+  const lx=12, ly=4, ls=20;
+  // Bande verticale gauche
+  doc.setFillColor(255,255,255); doc.setDrawColor(255,255,255);
+  doc.rect(lx,ly,2,ls,"F");
+  // Toit (triangle via polygon)
+  doc.setFillColor(255,255,255);
+  doc.triangle(lx+3,ly+ls*0.45, lx+3+ls*0.5,ly, lx+3+ls,ly+ls*0.45,"F");
+  // Corps maison
+  doc.rect(lx+3+ls*0.15,ly+ls*0.45, ls*0.7,ls*0.55,"F");
+  // Clé (cercle + tige)
+  doc.setFillColor(46,125,50);
+  doc.circle(lx+3+ls*1.25, ly+ls*0.6, ls*0.2,"F");
+  doc.setDrawColor(46,125,50); doc.setLineWidth(1.5);
+  doc.line(lx+3+ls*1.25+ls*0.2, ly+ls*0.6, lx+3+ls*1.25+ls*0.6, ly+ls*0.6);
+  doc.line(lx+3+ls*1.25+ls*0.48, ly+ls*0.6, lx+3+ls*1.25+ls*0.48, ly+ls*0.72);
+  doc.line(lx+3+ls*1.25+ls*0.6, ly+ls*0.6, lx+3+ls*1.25+ls*0.6, ly+ls*0.72);
+  doc.setLineWidth(0.5);
+
   doc.setTextColor(255,255,255);
   doc.setFont("helvetica","bold"); doc.setFontSize(20);
-  doc.text("Quittance de loyer",105,12,{align:"center"});
+  doc.text("Quittance de loyer",115,12,{align:"center"});
   doc.setFontSize(9); doc.setFont("helvetica","normal");
-  doc.text("Logiciel de gestion de biens immobiliers",105,20,{align:"center"});
+  doc.text("Logiciel de gestion de biens immobiliers",115,20,{align:"center"});
 
   // Blocs DE / À
   doc.setFillColor(232,245,233); doc.rect(0,28,210,30,"F");
